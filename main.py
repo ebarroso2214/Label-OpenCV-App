@@ -18,7 +18,7 @@ camera.release()
 cv2.destroyAllWindows
 #usr/local/bin/tesseract.exe
 
-def end_product():
+def conversion():
     path_to_tesseract =r'/usr/local/bin/tesseract' ##For this to work, need to add tesseract to PATH
     Imagepath = 'test.jpg'
     pytesseract.tesseract_cmd=path_to_tesseract
@@ -33,4 +33,4 @@ def end_product():
 
     f = open('image2text.txt')
 
-end_product()
+conversion()
