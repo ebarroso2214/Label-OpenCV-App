@@ -1,6 +1,7 @@
 import cv2
 from pytesseract import pytesseract
 import numpy as np
+import os
 
 from PIL import Image
 
@@ -15,11 +16,11 @@ while True:
         break
 
 camera.release()
-cv2.destroyAllWindows
-#usr/local/bin/tesseract.exe
+cv2.destroyAllWindows()
+
 
 def conversion():
-    path_to_tesseract =r'/usr/local/bin/tesseract' ##For this to work, need to add tesseract to PATH
+    path_to_tesseract =r'/usr/local/bin/tesseract'
     Imagepath = 'test.jpg'
     pytesseract.tesseract_cmd=path_to_tesseract
     text= pytesseract.image_to_string(Image.open(Imagepath))
@@ -27,10 +28,12 @@ def conversion():
     translated_text = text[:-1]
     print (translated_text)
 
+    #filepath = os.path.join('')
     #This portion will open a txt file and save the image to text variable
-    f = open("image2text.txt","w")
-    f.write(translated_text)
+    with open("image2text.txt","w") as f:
+        f.write(translated_text)
 
-    f = open('image2text.txt')
+    with open('image2text.txt') as f:
+        print(f.read())
 
 conversion()
