@@ -4,4 +4,4 @@ test.jpg
 main.spec
 dist
 build
-
+.DS_Store
