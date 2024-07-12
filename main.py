@@ -20,7 +20,7 @@ cv2.destroyAllWindows()
 
 
 def conversion():
-    path_to_tesseract =r'/usr/local/bin/tesseract'
+    path_to_tesseract =r'/opt/homebrew/bin/tesseract' #file location can also be /usr/bin/tesseract depending on if you use M1+ macs or intel macs.
     Imagepath = 'test.jpg'
     pytesseract.tesseract_cmd=path_to_tesseract
     text= pytesseract.image_to_string(Image.open(Imagepath))
