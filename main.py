@@ -84,15 +84,18 @@ def conversion():
     print(translated_text)
     update_console(translated_text)
 
+
 def update_console(text):
-    console_label.config(text=text)
+    console_text.insert(tk.END, text)
+    console_text.bind("<Button-1>", lambda event: text_widget.config(state=tk.NORMAL))
+    console_text.bind("<FocusOut>", lambda event: text_widget.config(state=tk.DISABLED))
 
 # Create a Tkinter window
 root = tk.Tk()
-root.title("Text Detection")
+root.title("iPhone Info Detection (click window first)")
 
 # Set the window size and background
-root.geometry("400x400")
+root.geometry("400x300")
 root.configure(bg="black")
 
 # Create a label to display the video frame
@@ -108,8 +111,17 @@ btn_close = Button(root, text="Close Window (Press 'q')", command=close_window)
 btn_close.pack()
 
 # Create a Label widget for the console output
-console_label = Label(root, bg="black", fg="white", wraplength=380, justify=tk.LEFT)
-console_label.pack(pady=10, padx=10, fill=tk.BOTH, expand=True)
+'''console_label = Label(root,text="", bg="black", fg="white", wraplength=380, justify=tk.LEFT)
+console_label.pack(pady=10, padx=10, fill=tk.BOTH, expand=True)'''
+
+console = tk.Toplevel(root)
+console.title('Output console')
+console.geometry('400x300+400+100')
+console_text = tk.Text(console, wrap='word',height=5, width=30)
+console_text.pack()
+
+
+
 
 # Set up key bindings for save and close
 root.bind('<s>', lambda e: save_frame())
