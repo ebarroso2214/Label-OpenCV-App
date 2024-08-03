@@ -12,5 +12,7 @@ This by no means is perfect and is not meant to be. However, it works just as I 
 
 This application will require you to have numpy, OpenCV, pillow, Tesseract-OCR, and pytesseract.
 
-Additionally, this is based for macOS only. 
+Orginally was designed to be used with macOS but has now been changed to be used with Windows operating system.
+
+Two branches have been created, 'windows' branch for Windows OS and 'testing' branch for macOS. Please refer to each of these when browsing code for your operating system of choice.
 
