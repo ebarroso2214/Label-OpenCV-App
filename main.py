@@ -8,10 +8,12 @@ import os
 # Initialize the camera
 camera = cv2.VideoCapture(0)
 
+
 def update_frame():
     _, frame = camera.read()
     if frame is not None:
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        frame = cv2.resize(frame, (root.winfo_width(), root.winfo_height()))
         img = Image.fromarray(frame)
         imgtk = ImageTk.PhotoImage(image=img)
         lbl.imgtk = imgtk
@@ -30,7 +32,7 @@ def close_window():
     root.destroy() # Closes window
 
 def conversion():
-    path_to_tesseract = r'/opt/homebrew/bin/tesseract'  # Adjust path as necessary
+    path_to_tesseract = r'C:/Program Files/Tesseract-OCR/tesseract.exe'  # Adjust path as necessary
     Imagepath = 'test.jpg'
     pytesseract.tesseract_cmd = path_to_tesseract
     text = pytesseract.image_to_string(Image.open(Imagepath))
@@ -50,7 +52,7 @@ root = tk.Tk()
 root.title("iPhone Info Detection (click window first)")
 
 # Set the window size and background
-root.geometry("400x800")
+root.geometry("600x900")
 root.configure(bg="black")
 
 # Create a label to display the video frame
@@ -58,12 +60,12 @@ lbl = tk.Label(root)
 lbl.pack()
 
 # Create a button to save the frame
-btn_save = Button(root, text="Save Frame (Press 's')", command=save_frame)
+'''btn_save = Button(root, text="Save Frame (Press 's')", command=save_frame)
 btn_save.pack()
 
 # Create a button to close the window
 btn_close = Button(root, text="Close Window (Press 'q')", command=close_window)
-btn_close.pack()    
+btn_close.pack()    '''
 
 
 #Create an output console for text to be displayed in
