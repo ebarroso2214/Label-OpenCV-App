@@ -16,3 +16,10 @@ Orginally was designed to be used with macOS but has now been changed to be used
 
 Two branches have been created, 'windows' branch for Windows OS and 'testing' branch for macOS. Please refer to each of these when browsing code for your operating system of choice.
 
+Please be sure to use a high quality camera, the camera I used during testing was a Logitech BRIO PRO X webcam for the best possible quality. 
+
+### Additional Notes
+
+Adjust your camera settings as neccessary. I spent quite a while tweaking the settings for the camera quality to pick up the phone's screen texts as accurately as possible.
+
+Another note, so far, the terminal works best for the output, there are issues with the Tkinter created console currently that I am going to be fixing later on. 
