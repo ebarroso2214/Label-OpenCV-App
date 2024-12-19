@@ -26,20 +26,6 @@ def detect_phone_screen(image): #Assists with detecting phone screens to ensure 
             cropped = image[y:y+h, x:x+w]
             return cropped
         return image
-    
-
-'''while True:
-    ret, frame = camera.read()
-    if not ret:
-        break
-    
-    cropped = detect_phone_screen(frame)
-    cv2.imshow("Cropped Screen", cropped)
-
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
-camera.release()'''
-
 
 def update_frame():
     _, frame = camera.read()
@@ -52,18 +38,15 @@ def update_frame():
         lbl.image = imgtk  # keep a reference to prevent garbage collection
     lbl.after(10, update_frame)  # update every 10 ms
 
-
 def save_frame():
     _, frame = camera.read()
     if frame is not None:
         cv2.imwrite('test.jpg', frame)
         image_check()
-        conversion()  # Call the conversion function after saving the frame
-
 
 def image_check():
     img = Image.open('test.jpg')
-    custom_config = r'--psm 6 -c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+    custom_config = r'--psm 6 -c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' # Whitelist to avoid special characters from being used instead of alphanumerical characters.
     result = pytesseract.image_to_string(img, config=custom_config)
     print (result)
     update_console(result)
@@ -71,17 +54,6 @@ def image_check():
 def close_window(): 
     camera.release()
     root.destroy() # Closes window
-
-def conversion():
-    path_to_tesseract = r'/opt/homebrew/bin/tesseract'  # Adjust path as necessary
-    Imagepath = 'test.jpg'
-    pytesseract.tesseract_cmd = path_to_tesseract
-    text = pytesseract.image_to_string(Image.open(Imagepath))
-    translated_text = text.strip()
-
-    # print(translated_text) # Tests to see if information does get saved and displayed
-    #update_console(translated_text)
-
 
 def update_console(text): # Function to update text that gets displayed in console and allow it to be copied
     console_text.delete(1.0, tk.END)
@@ -110,15 +82,12 @@ btn_save.pack()
 btn_close = Button(root, text="Close Window (Press 'q')", command=close_window)
 btn_close.pack()    
 
-
 #Create an output console for text to be displayed in
 console = tk.Toplevel(root)
 console.title('Output console')
 console.geometry('400x300+400+100')
 console_text = tk.Text(console, wrap='word',height=100, width=100,font=custom_font)
 console_text.pack()
-
-
 
 
 # Set up key bindings for save and close
